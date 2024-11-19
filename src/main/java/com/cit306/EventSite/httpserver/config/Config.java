@@ -1,4 +1,4 @@
-package com.cit306.EventSite.config;
+package com.cit306.EventSite.httpserver.config;
 
 public class Config {
 

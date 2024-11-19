@@ -1,8 +1,8 @@
 package com.cit306.EventSite;
 
-import com.cit306.EventSite.Call.ServerListenerThread;
-import com.cit306.EventSite.config.Config;
-import com.cit306.EventSite.config.ConfigManager;
+import com.cit306.EventSite.httpserver.Call.ServerListenerThread;
+import com.cit306.EventSite.httpserver.config.Config;
+import com.cit306.EventSite.httpserver.config.ConfigManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

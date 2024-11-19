@@ -1,6 +1,6 @@
-package com.cit306.EventSite.config;
+package com.cit306.EventSite.httpserver.config;
 
-import com.cit306.EventSite.util.Json;
+import com.cit306.EventSite.httpserver.util.Json;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 

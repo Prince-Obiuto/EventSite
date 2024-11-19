@@ -1,4 +1,4 @@
-package com.cit306.EventSite.util;
+package com.cit306.EventSite.httpserver.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.*;
