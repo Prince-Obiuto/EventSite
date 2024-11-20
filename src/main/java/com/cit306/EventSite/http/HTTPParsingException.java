@@ -1,6 +1,6 @@
 package com.cit306.EventSite.http;
 
-public class HTTPParsingException extends Exception{
+public class HTTPParsingException extends Exception {
 
     private final HTTPStatusCodes errorCode;
 

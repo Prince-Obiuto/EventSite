@@ -13,7 +13,15 @@ public class HTTPRequest extends HTTPMessage{
         return method;
     }
 
-    void setMethod(HTTPMethod method) {
-        this.method = method;
+    void setMethod(String methodName) throws HTTPParsingException {
+        for (HTTPMethod method: HTTPMethod.values()) {
+            if (methodName.equals(method.name())) {
+                this.method = method;
+                return;
+            }
+        }
+        throw new HTTPParsingException(
+                HTTPStatusCodes.SERVER_ERROR_501_NOT_IMPLEMENTED
+        );
     }
 }
