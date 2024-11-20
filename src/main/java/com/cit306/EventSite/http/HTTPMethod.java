@@ -1,4 +1,5 @@
 package com.cit306.EventSite.http;
 
-public class HTTPMethod {
+public enum HTTPMethod {
+    GET, HEAD
 }
