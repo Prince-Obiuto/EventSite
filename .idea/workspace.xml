@@ -5,18 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71e1af24-cec7-4b54-8077-805738bb3606" name="Changes" comment="Added files">
-      <change afterPath="$PROJECT_DIR$/Request.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HttpParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/httpserver/Call/ServerListenerThread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/cit306/EventSite/http/HttpParserTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HTTPMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HTTPMethod.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HTTPRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/Call/ServerListenerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/httpserver/Call/HTTPConnectionWorkerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/HttpServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/HttpServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/httpserver/config/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/config/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/httpserver/config/ConfigManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/config/HttpConfigException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/httpserver/config/HttpConfigException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/util/Json.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/httpserver/util/Json.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HttpParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HttpParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/cit306/EventSite/http/HttpParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/cit306/EventSite/http/HttpParserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -118,7 +112,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731955272926</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added files">
+      <option name="closed" value="true" />
+      <created>1732060158810</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1732060158810</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
