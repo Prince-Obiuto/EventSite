@@ -12,7 +12,7 @@ public class HTTPConnectionWorkerThread extends Thread {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(HTTPConnectionWorkerThread.class);
 
-    private Socket socket;
+    private final Socket socket;
 
     public HTTPConnectionWorkerThread(Socket socket){
         this.socket = socket;
@@ -27,7 +27,7 @@ public class HTTPConnectionWorkerThread extends Thread {
             inputStream = socket.getInputStream();
             outputStream = socket.getOutputStream();
 
-            String html = "<html><head><title>Simple Java HTTP Server</title></head><body><h1>This page was served using my simple -but not so simple- Java HTTP Server</h1></body></html>";
+            String html = "<html><head><title>Simple Java HTTP Server</title></head><body><h1>This page was served using my simple - but not so simple - HTTP Server written in Java.</h1></body></html>";
 
             final String CRLF = "\n\r"; //13, 10
 

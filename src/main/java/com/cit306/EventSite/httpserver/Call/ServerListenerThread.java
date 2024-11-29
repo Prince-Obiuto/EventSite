@@ -11,9 +11,9 @@ public class ServerListenerThread extends Thread {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(ServerListenerThread.class);
 
-    private int port;
-    private String webroot;
-    private ServerSocket serverSocket;
+    private final int port;
+    private final String webroot;
+    private final ServerSocket serverSocket;
 
     public ServerListenerThread(int port, String webroot) throws IOException {
         this.port = port;
@@ -32,7 +32,6 @@ public class ServerListenerThread extends Thread {
                 HTTPConnectionWorkerThread workerThread = new HTTPConnectionWorkerThread(socket);
                 workerThread.start();
             }
-            //serverSocket.close(); // TODO handle close
 
         } catch (IOException e) {
             LOGGER.error("Problem with setting socket", e);

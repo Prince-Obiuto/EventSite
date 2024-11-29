@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71e1af24-cec7-4b54-8077-805738bb3606" name="Changes" comment="Refactor HTTPRequest and add HTTP error handling&#10;&#10;Converted HTTPMethod to enum and updated HTTPRequest to use it. Added HTTPParsingException and HTTPStatusCodes for error management. Enhanced HttpParser with additional parsing logic and constants.">
+    <list default="true" id="71e1af24-cec7-4b54-8077-805738bb3606" name="Changes" comment="Updated HttpParserTest with more extensive testing scenarios.&#10;Refactored HTTPMethod&#10;Added more functionalities to HttpParser.&#10;Made the HTTPParsingException to better catch and throw errors with better logging">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/BadHTTPVersionException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HTTPVersion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/cit306/EventSite/http/HTTPVersionTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HTTPMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HTTPMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HTTPParsingException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HTTPParsingException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HTTPRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HTTPRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HTTPStatusCodes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HTTPStatusCodes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HttpParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HttpParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/httpserver/Call/HTTPConnectionWorkerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/httpserver/Call/HTTPConnectionWorkerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/httpserver/Call/ServerListenerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/httpserver/Call/ServerListenerThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/cit306/EventSite/http/HttpParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/cit306/EventSite/http/HttpParserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,6 +25,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -36,6 +42,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -67,9 +74,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.HttpServer.executor": "Run",
+    "JUnit.All Tests.executor": "Run",
+    "JUnit.HTTPVersionTest.executor": "Run",
+    "JUnit.HTTPVersionTest.getBestCompatibleVersionExactMatch.executor": "Debug",
     "JUnit.HttpParserTest.executor": "Run",
     "JUnit.HttpParserTest.parseHTTPRequestBadMethod.executor": "Debug",
     "JUnit.HttpParserTest.parseHTTPRequestBadMethod1.executor": "Run",
+    "JUnit.HttpParserTest.parseHTTPRequestLineCRnoLF.executor": "Run",
     "Maven.EventSite [clean].executor": "Run",
     "Maven.EventSite [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
     "Maven.EventSite [org.apache.maven.plugins:maven-install-plugin:3.1.2:install].executor": "Run",
@@ -83,7 +94,7 @@
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/HP/Desktop/Java Projects/CIT-306-project",
-    "settings.editor.selected.configurable": "ml.llm.AIAssistantPromptsLibrary"
+    "settings.editor.selected.configurable": "com.android.studio.ml.bot.mainConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -101,7 +112,65 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.HttpParserTest">
+  <component name="RunManager" selected="JUnit.All Tests">
+    <configuration name="HttpServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.cit306.EventSite.HttpServer" />
+      <module name="EventSite" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cit306.EventSite.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All Tests" type="JUnit" factoryName="JUnit">
+      <module name="EventSite" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HTTPVersionTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="EventSite" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cit306.EventSite.http.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cit306.EventSite.http" />
+      <option name="MAIN_CLASS_NAME" value="com.cit306.EventSite.http.HTTPVersionTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HTTPVersionTest.getBestCompatibleVersionExactMatch" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="EventSite" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cit306.EventSite.http.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cit306.EventSite.http" />
+      <option name="MAIN_CLASS_NAME" value="com.cit306.EventSite.http.HTTPVersionTest" />
+      <option name="METHOD_NAME" value="getBestCompatibleVersionExactMatch" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="HttpParserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EventSite" />
       <extension name="coverage">
@@ -133,9 +202,37 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="HttpParserTest.parseHTTPRequestLineCRnoLF" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="EventSite" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cit306.EventSite.http.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cit306.EventSite.http" />
+      <option name="MAIN_CLASS_NAME" value="com.cit306.EventSite.http.HttpParserTest" />
+      <option name="METHOD_NAME" value="parseHTTPRequestLineCRnoLF" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.HttpServer" />
+      <item itemvalue="JUnit.HTTPVersionTest" />
+      <item itemvalue="JUnit.All Tests" />
+      <item itemvalue="JUnit.HttpParserTest" />
+      <item itemvalue="JUnit.HttpParserTest.parseHTTPRequestBadMethod1" />
+      <item itemvalue="JUnit.HttpParserTest.parseHTTPRequestLineCRnoLF" />
+      <item itemvalue="JUnit.HTTPVersionTest.getBestCompatibleVersionExactMatch" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.HttpServer" />
         <item itemvalue="JUnit.HttpParserTest" />
+        <item itemvalue="JUnit.HTTPVersionTest.getBestCompatibleVersionExactMatch" />
+        <item itemvalue="JUnit.HttpParserTest.parseHTTPRequestLineCRnoLF" />
         <item itemvalue="JUnit.HttpParserTest.parseHTTPRequestBadMethod1" />
       </list>
     </recent_temporary>
@@ -189,7 +286,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732393134467</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Updated HttpParserTest with more extensive testing scenarios.&#10;Refactored HTTPMethod&#10;Added more functionalities to HttpParser.&#10;Made the HTTPParsingException to better catch and throw errors with better logging">
+      <option name="closed" value="true" />
+      <created>1732643748004</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1732643748004</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -208,18 +313,8 @@
     <MESSAGE value="Added files" />
     <MESSAGE value="Refactor HTTPRequest setMethod to handle invalid methods.&#10;&#10;Updated HTTPRequest#setMethod to throw HTTPParsingException for unsupported HTTP methods. Added corresponding test cases in HttpParserTest to ensure proper error handling and verification for valid and invalid methods. Enhanced HttpParser to manage these exceptions." />
     <MESSAGE value="Refactor HTTPRequest and add HTTP error handling&#10;&#10;Converted HTTPMethod to enum and updated HTTPRequest to use it. Added HTTPParsingException and HTTPStatusCodes for error management. Enhanced HttpParser with additional parsing logic and constants." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor HTTPRequest and add HTTP error handling&#10;&#10;Converted HTTPMethod to enum and updated HTTPRequest to use it. Added HTTPParsingException and HTTPStatusCodes for error management. Enhanced HttpParser with additional parsing logic and constants." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HttpParser.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Updated HttpParserTest with more extensive testing scenarios.&#10;Refactored HTTPMethod&#10;Added more functionalities to HttpParser.&#10;Made the HTTPParsingException to better catch and throw errors with better logging" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated HttpParserTest with more extensive testing scenarios.&#10;Refactored HTTPMethod&#10;Added more functionalities to HttpParser.&#10;Made the HTTPParsingException to better catch and throw errors with better logging" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/EventSite$HttpParserTest_parseHTTPRequestBadMethod1.ic" NAME="HttpParserTest.parseHTTPRequestBadMethod1 Coverage Results" MODIFIED="1732392657632" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
