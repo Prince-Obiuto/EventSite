@@ -4,17 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71e1af24-cec7-4b54-8077-805738bb3606" name="Changes" comment="Updated HttpParserTest with more extensive testing scenarios.&#10;Refactored HTTPMethod&#10;Added more functionalities to HttpParser.&#10;Made the HTTPParsingException to better catch and throw errors with better logging">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/BadHTTPVersionException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HTTPVersion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/cit306/EventSite/http/HTTPVersionTest.java" afterDir="false" />
+    <list default="true" id="71e1af24-cec7-4b54-8077-805738bb3606" name="Changes" comment="This code update significantly improves the HTTP request parsing process, focusing on robustness, error handling, and HTTP version compatibility. Here's a breakdown of the changes:&#10;&#10;**Key Improvements:**&#10;&#10;* **HTTP Version Handling:** The code now supports parsing and validating HTTP versions. It correctly identifies the HTTP version from the request and checks for compatibility.  A new `HTTPVersion` enum and a `BadHTTPVersionException` are introduced for managing versioning.  The `HTTPRequest` object now stores both the original HTTP version string and the best compatible `HTTPVersion`.&#10;* **Enhanced Error Handling:**  Error handling is more precise and informative. The `HTTPParsingException` is used more effectively, and specific HTTP status codes (400, 505) are returned for bad requests, unsupported HTTP versions, and other parsing errors. This makes debugging easier.&#10;* **Improved Request Target Handling:** The request target is now explicitly parsed and validated, preventing potential issues with null or empty targets.&#10;* **Thorough Testing:**  The unit tests in `HttpParserTest` are expanded to cover various scenarios including bad HTTP versions, unsupported versions, and requests with only CR (no LF). This thorough testing ensures the parser's resilience.&#10;* **Code Cleanup:** Minor improvements like removing unnecessary comments and slightly clarifying the HTML response message in `HTTPConnectionWorkerThread` contribute to better code readability.  The removal of the commented-out `serverSocket.close()` in `ServerListenerThread` suggests a potential future improvement for graceful shutdown handling.&#10;&#10;**Specific Changes:**&#10;&#10;* **`HTTPRequest.java`:**  Added fields for original and best-compatible HTTP versions. Added getters and a setter for HTTP version. Added error handling for null/empty request targets.&#10;* **`HttpParser.java`:**  Improved parsing logic for HTTP versions and request targets.  Handles `BadHTTPVersionException` and throws `HTTPParsingException` with appropriate status codes.&#10;* **`HttpParserTest.java`:** Added more tests to cover various error conditions and HTTP version scenarios.&#10;* **`HTTPStatusCodes.java`:**  Added a status code for unsupported HTTP versions (505).&#10;* **`BadHTTPVersionException.java`:** New exception specifically for handling malformed HTTP version strings.&#10;* **`HTTPVersion.java`:** New enum to represent supported HTTP versions and provides a method to determine the best compatible version.&#10;* **`HTTPVersionTest.java`:** New test class to ensure correct functionality of HTTP version parsing.&#10;* **`ServerListenerThread.java` and `HTTPConnectionWorkerThread.java`:**  Minor code cleanup.&#10;&#10;&#10;This update represents a significant step forward in terms of code quality, reliability, and adherence to HTTP standards. The improved error handling and version compatibility make the parser much more robust, and the enhanced tests provide greater confidence in its correctness.">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/cit306/EventSite/http/HTTPHeaderParserTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HTTPRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HTTPRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HTTPStatusCodes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HTTPStatusCodes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HttpParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/http/HttpParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/httpserver/Call/HTTPConnectionWorkerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/httpserver/Call/HTTPConnectionWorkerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/httpserver/Call/ServerListenerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cit306/EventSite/httpserver/Call/ServerListenerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/cit306/EventSite/http/HttpParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/cit306/EventSite/http/HttpParserTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,32 +65,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.HttpServer.executor": "Run",
-    "JUnit.All Tests.executor": "Run",
-    "JUnit.HTTPVersionTest.executor": "Run",
-    "JUnit.HTTPVersionTest.getBestCompatibleVersionExactMatch.executor": "Debug",
-    "JUnit.HttpParserTest.executor": "Run",
-    "JUnit.HttpParserTest.parseHTTPRequestBadMethod.executor": "Debug",
-    "JUnit.HttpParserTest.parseHTTPRequestBadMethod1.executor": "Run",
-    "JUnit.HttpParserTest.parseHTTPRequestLineCRnoLF.executor": "Run",
-    "Maven.EventSite [clean].executor": "Run",
-    "Maven.EventSite [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
-    "Maven.EventSite [org.apache.maven.plugins:maven-install-plugin:3.1.2:install].executor": "Run",
-    "Maven.EventSite [verify].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/HP/Desktop/Java Projects/CIT-306-project",
-    "settings.editor.selected.configurable": "com.android.studio.ml.bot.mainConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HttpServer.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All Tests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HTTPHeaderParserTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HTTPHeaderParserTest.testSimpleSingleHeader.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.HTTPVersionTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HTTPVersionTest.getBestCompatibleVersionExactMatch.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.HttpParserTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpParserTest.parseHTTPRequestBadMethod.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.HttpParserTest.parseHTTPRequestBadMethod1.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.HttpParserTest.parseHTTPRequestLineCRnoLF.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.EventSite [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.EventSite [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.EventSite [org.apache.maven.plugins:maven-install-plugin:3.1.2:install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.EventSite [verify].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP/Desktop/Java Projects/CIT-306-project&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -112,7 +108,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.All Tests">
+  <component name="RunManager" selected="JUnit.HTTPHeaderParserTest">
     <configuration name="HttpServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.cit306.EventSite.HttpServer" />
       <module name="EventSite" />
@@ -135,6 +131,21 @@
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="wholeProject" />
       </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HTTPHeaderParserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="EventSite" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cit306.EventSite.http.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cit306.EventSite.http" />
+      <option name="MAIN_CLASS_NAME" value="com.cit306.EventSite.http.HTTPHeaderParserTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -186,22 +197,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HttpParserTest.parseHTTPRequestBadMethod1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="EventSite" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.cit306.EventSite.http.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.cit306.EventSite.http" />
-      <option name="MAIN_CLASS_NAME" value="com.cit306.EventSite.http.HttpParserTest" />
-      <option name="METHOD_NAME" value="parseHTTPRequestBadMethod1" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="HttpParserTest.parseHTTPRequestLineCRnoLF" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EventSite" />
       <extension name="coverage">
@@ -220,20 +215,20 @@
     </configuration>
     <list>
       <item itemvalue="Application.HttpServer" />
-      <item itemvalue="JUnit.HTTPVersionTest" />
       <item itemvalue="JUnit.All Tests" />
-      <item itemvalue="JUnit.HttpParserTest" />
-      <item itemvalue="JUnit.HttpParserTest.parseHTTPRequestBadMethod1" />
-      <item itemvalue="JUnit.HttpParserTest.parseHTTPRequestLineCRnoLF" />
+      <item itemvalue="JUnit.HTTPVersionTest" />
+      <item itemvalue="JUnit.HTTPHeaderParserTest" />
       <item itemvalue="JUnit.HTTPVersionTest.getBestCompatibleVersionExactMatch" />
+      <item itemvalue="JUnit.HttpParserTest" />
+      <item itemvalue="JUnit.HttpParserTest.parseHTTPRequestLineCRnoLF" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.HttpServer" />
+        <item itemvalue="JUnit.HTTPHeaderParserTest" />
+        <item itemvalue="JUnit.HttpParserTest.parseHTTPRequestLineCRnoLF" />
         <item itemvalue="JUnit.HttpParserTest" />
         <item itemvalue="JUnit.HTTPVersionTest.getBestCompatibleVersionExactMatch" />
-        <item itemvalue="JUnit.HttpParserTest.parseHTTPRequestLineCRnoLF" />
-        <item itemvalue="JUnit.HttpParserTest.parseHTTPRequestBadMethod1" />
+        <item itemvalue="Application.HttpServer" />
       </list>
     </recent_temporary>
   </component>
@@ -294,7 +289,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732643748004</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="This code update significantly improves the HTTP request parsing process, focusing on robustness, error handling, and HTTP version compatibility. Here's a breakdown of the changes:&#10;&#10;**Key Improvements:**&#10;&#10;* **HTTP Version Handling:** The code now supports parsing and validating HTTP versions. It correctly identifies the HTTP version from the request and checks for compatibility.  A new `HTTPVersion` enum and a `BadHTTPVersionException` are introduced for managing versioning.  The `HTTPRequest` object now stores both the original HTTP version string and the best compatible `HTTPVersion`.&#10;* **Enhanced Error Handling:**  Error handling is more precise and informative. The `HTTPParsingException` is used more effectively, and specific HTTP status codes (400, 505) are returned for bad requests, unsupported HTTP versions, and other parsing errors. This makes debugging easier.&#10;* **Improved Request Target Handling:** The request target is now explicitly parsed and validated, preventing potential issues with null or empty targets.&#10;* **Thorough Testing:**  The unit tests in `HttpParserTest` are expanded to cover various scenarios including bad HTTP versions, unsupported versions, and requests with only CR (no LF). This thorough testing ensures the parser's resilience.&#10;* **Code Cleanup:** Minor improvements like removing unnecessary comments and slightly clarifying the HTML response message in `HTTPConnectionWorkerThread` contribute to better code readability.  The removal of the commented-out `serverSocket.close()` in `ServerListenerThread` suggests a potential future improvement for graceful shutdown handling.&#10;&#10;**Specific Changes:**&#10;&#10;* **`HTTPRequest.java`:**  Added fields for original and best-compatible HTTP versions. Added getters and a setter for HTTP version. Added error handling for null/empty request targets.&#10;* **`HttpParser.java`:**  Improved parsing logic for HTTP versions and request targets.  Handles `BadHTTPVersionException` and throws `HTTPParsingException` with appropriate status codes.&#10;* **`HttpParserTest.java`:** Added more tests to cover various error conditions and HTTP version scenarios.&#10;* **`HTTPStatusCodes.java`:**  Added a status code for unsupported HTTP versions (505).&#10;* **`BadHTTPVersionException.java`:** New exception specifically for handling malformed HTTP version strings.&#10;* **`HTTPVersion.java`:** New enum to represent supported HTTP versions and provides a method to determine the best compatible version.&#10;* **`HTTPVersionTest.java`:** New test class to ensure correct functionality of HTTP version parsing.&#10;* **`ServerListenerThread.java` and `HTTPConnectionWorkerThread.java`:**  Minor code cleanup.&#10;&#10;&#10;This update represents a significant step forward in terms of code quality, reliability, and adherence to HTTP standards. The improved error handling and version compatibility make the parser much more robust, and the enhanced tests provide greater confidence in its correctness.">
+      <option name="closed" value="true" />
+      <created>1732883427282</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1732883427282</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -314,7 +317,8 @@
     <MESSAGE value="Refactor HTTPRequest setMethod to handle invalid methods.&#10;&#10;Updated HTTPRequest#setMethod to throw HTTPParsingException for unsupported HTTP methods. Added corresponding test cases in HttpParserTest to ensure proper error handling and verification for valid and invalid methods. Enhanced HttpParser to manage these exceptions." />
     <MESSAGE value="Refactor HTTPRequest and add HTTP error handling&#10;&#10;Converted HTTPMethod to enum and updated HTTPRequest to use it. Added HTTPParsingException and HTTPStatusCodes for error management. Enhanced HttpParser with additional parsing logic and constants." />
     <MESSAGE value="Updated HttpParserTest with more extensive testing scenarios.&#10;Refactored HTTPMethod&#10;Added more functionalities to HttpParser.&#10;Made the HTTPParsingException to better catch and throw errors with better logging" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated HttpParserTest with more extensive testing scenarios.&#10;Refactored HTTPMethod&#10;Added more functionalities to HttpParser.&#10;Made the HTTPParsingException to better catch and throw errors with better logging" />
+    <MESSAGE value="This code update significantly improves the HTTP request parsing process, focusing on robustness, error handling, and HTTP version compatibility. Here's a breakdown of the changes:&#10;&#10;**Key Improvements:**&#10;&#10;* **HTTP Version Handling:** The code now supports parsing and validating HTTP versions. It correctly identifies the HTTP version from the request and checks for compatibility.  A new `HTTPVersion` enum and a `BadHTTPVersionException` are introduced for managing versioning.  The `HTTPRequest` object now stores both the original HTTP version string and the best compatible `HTTPVersion`.&#10;* **Enhanced Error Handling:**  Error handling is more precise and informative. The `HTTPParsingException` is used more effectively, and specific HTTP status codes (400, 505) are returned for bad requests, unsupported HTTP versions, and other parsing errors. This makes debugging easier.&#10;* **Improved Request Target Handling:** The request target is now explicitly parsed and validated, preventing potential issues with null or empty targets.&#10;* **Thorough Testing:**  The unit tests in `HttpParserTest` are expanded to cover various scenarios including bad HTTP versions, unsupported versions, and requests with only CR (no LF). This thorough testing ensures the parser's resilience.&#10;* **Code Cleanup:** Minor improvements like removing unnecessary comments and slightly clarifying the HTML response message in `HTTPConnectionWorkerThread` contribute to better code readability.  The removal of the commented-out `serverSocket.close()` in `ServerListenerThread` suggests a potential future improvement for graceful shutdown handling.&#10;&#10;**Specific Changes:**&#10;&#10;* **`HTTPRequest.java`:**  Added fields for original and best-compatible HTTP versions. Added getters and a setter for HTTP version. Added error handling for null/empty request targets.&#10;* **`HttpParser.java`:**  Improved parsing logic for HTTP versions and request targets.  Handles `BadHTTPVersionException` and throws `HTTPParsingException` with appropriate status codes.&#10;* **`HttpParserTest.java`:** Added more tests to cover various error conditions and HTTP version scenarios.&#10;* **`HTTPStatusCodes.java`:**  Added a status code for unsupported HTTP versions (505).&#10;* **`BadHTTPVersionException.java`:** New exception specifically for handling malformed HTTP version strings.&#10;* **`HTTPVersion.java`:** New enum to represent supported HTTP versions and provides a method to determine the best compatible version.&#10;* **`HTTPVersionTest.java`:** New test class to ensure correct functionality of HTTP version parsing.&#10;* **`ServerListenerThread.java` and `HTTPConnectionWorkerThread.java`:**  Minor code cleanup.&#10;&#10;&#10;This update represents a significant step forward in terms of code quality, reliability, and adherence to HTTP standards. The improved error handling and version compatibility make the parser much more robust, and the enhanced tests provide greater confidence in its correctness." />
+    <option name="LAST_COMMIT_MESSAGE" value="This code update significantly improves the HTTP request parsing process, focusing on robustness, error handling, and HTTP version compatibility. Here's a breakdown of the changes:&#10;&#10;**Key Improvements:**&#10;&#10;* **HTTP Version Handling:** The code now supports parsing and validating HTTP versions. It correctly identifies the HTTP version from the request and checks for compatibility.  A new `HTTPVersion` enum and a `BadHTTPVersionException` are introduced for managing versioning.  The `HTTPRequest` object now stores both the original HTTP version string and the best compatible `HTTPVersion`.&#10;* **Enhanced Error Handling:**  Error handling is more precise and informative. The `HTTPParsingException` is used more effectively, and specific HTTP status codes (400, 505) are returned for bad requests, unsupported HTTP versions, and other parsing errors. This makes debugging easier.&#10;* **Improved Request Target Handling:** The request target is now explicitly parsed and validated, preventing potential issues with null or empty targets.&#10;* **Thorough Testing:**  The unit tests in `HttpParserTest` are expanded to cover various scenarios including bad HTTP versions, unsupported versions, and requests with only CR (no LF). This thorough testing ensures the parser's resilience.&#10;* **Code Cleanup:** Minor improvements like removing unnecessary comments and slightly clarifying the HTML response message in `HTTPConnectionWorkerThread` contribute to better code readability.  The removal of the commented-out `serverSocket.close()` in `ServerListenerThread` suggests a potential future improvement for graceful shutdown handling.&#10;&#10;**Specific Changes:**&#10;&#10;* **`HTTPRequest.java`:**  Added fields for original and best-compatible HTTP versions. Added getters and a setter for HTTP version. Added error handling for null/empty request targets.&#10;* **`HttpParser.java`:**  Improved parsing logic for HTTP versions and request targets.  Handles `BadHTTPVersionException` and throws `HTTPParsingException` with appropriate status codes.&#10;* **`HttpParserTest.java`:** Added more tests to cover various error conditions and HTTP version scenarios.&#10;* **`HTTPStatusCodes.java`:**  Added a status code for unsupported HTTP versions (505).&#10;* **`BadHTTPVersionException.java`:** New exception specifically for handling malformed HTTP version strings.&#10;* **`HTTPVersion.java`:** New enum to represent supported HTTP versions and provides a method to determine the best compatible version.&#10;* **`HTTPVersionTest.java`:** New test class to ensure correct functionality of HTTP version parsing.&#10;* **`ServerListenerThread.java` and `HTTPConnectionWorkerThread.java`:**  Minor code cleanup.&#10;&#10;&#10;This update represents a significant step forward in terms of code quality, reliability, and adherence to HTTP standards. The improved error handling and version compatibility make the parser much more robust, and the enhanced tests provide greater confidence in its correctness." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/EventSite$HttpParserTest_parseHTTPRequestBadMethod1.ic" NAME="HttpParserTest.parseHTTPRequestBadMethod1 Coverage Results" MODIFIED="1732392657632" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">

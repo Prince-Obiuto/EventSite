@@ -1,11 +1,16 @@
 package com.cit306.EventSite.http;
 
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Set;
+
 public class HTTPRequest extends HTTPMessage{
 
     private HTTPMethod method;
     private String requestTarget;
     private String originalHttpVersion; //literal from the request
     private HTTPVersion bestCompatibleHttpVersion;
+    private final HashMap<String, String> headers = new HashMap<>();
 
     HTTPRequest() {
     }
@@ -24,6 +29,14 @@ public class HTTPRequest extends HTTPMessage{
 
     public String getOriginalHttpVersion() {
         return originalHttpVersion;
+    }
+
+    public Set<String> getHeaderNames() {
+        return headers.keySet();
+    }
+
+    public String getHeader(String headerName) {
+        return headers.get(headerName.toLowerCase());
     }
 
 
@@ -52,5 +65,9 @@ public class HTTPRequest extends HTTPMessage{
         if (this.bestCompatibleHttpVersion == null) {
             throw new HTTPParsingException(HTTPStatusCodes.SERVER_ERROR_505_HTTP_VERSION_NOT_SUPPORTED);
         }
+    }
+
+    void addHeader(String headerName, String headerField) {
+        headers.put(headerName.toLowerCase(), headerField);
     }
 }
