@@ -120,10 +120,10 @@ public class HttpParser {
     }
 
     private void processSingleHeaderField(StringBuilder processingDataBuffer, HTTPRequest request) throws HTTPParsingException {
-        String readHeaderField = processingDataBuffer.toString();
-        Pattern pattern = Pattern.compile("^(?<fieldName>[!#$%&’*+\\-./^_‘|˜\\\\dA-Za-z]+):\\\\s?(?<fieldValue>[!#$%&’*+\\-./^_‘|˜(),:;<=>?@[\\\\\\\\]{}\\\" \\\\dA-Za-z]+)\\\\s?$");
+        String rawHeaderField = processingDataBuffer.toString();
+        Pattern pattern = Pattern.compile("^(?<fieldName>[^:\\r\\n]+):\\s?(?<fieldValue>.+?)\\r?$");
 
-        Matcher matcher = pattern.matcher(readHeaderField);
+        Matcher matcher = pattern.matcher(rawHeaderField);
         if (matcher.matches()) {
             // We found a proper header
             String fieldName = matcher.group("fieldName");
