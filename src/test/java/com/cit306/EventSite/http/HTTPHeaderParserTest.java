@@ -50,31 +50,39 @@ public class HTTPHeaderParserTest {
         assertEquals("localhost:8080", request.getHeader("host"));
     }
 
+    @Test
+    public void testErrorSpaceBeforeColonHeader() throws InvocationTargetException, IllegalAccessException {
+        HTTPRequest request = new HTTPRequest();
+        try {
+            parseHeadersMethod.invoke(
+                    httpParser,
+                    generateSpaceBeforeColonErrorHeaderMessage(),
+                    request);
+        } catch (InvocationTargetException e) {
+            if (e.getCause() instanceof HTTPParsingException) {
+                assertEquals(HTTPStatusCodes.CLIENT_ERROR_400_BAD_REQUEST, ((HTTPParsingException) e.getCause()).getErrorCode());
+            }
+        }
+
+    }
 
 
     private InputStreamReader generateSimpleSingleHeaderMessage(){
         String rawData =
                 //"""
-                //GET / HTTP/1.1\r
                 "Host: localhost:8080\r\n";
                 /*Connection: keep-alive\r
-                sec-ch-ua: "Chromium";v="130", "Google Chrome";v="130", "Not?A_Brand";v="99"\r
-                sec-ch-ua-mobile: ?0\r
-                sec-ch-ua-platform: "Windows"\r
-                DNT: 1\r
                 Upgrade-Insecure-Requests: 1\r
                 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36\r
                 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,(*)/*;q=0.8,application/signed-exchange;v=b3;q=0.7\r
                 Sec-Fetch-Site: none\r
                 Sec-Fetch-Mode: navigate\r
                 Sec-Fetch-User: ?1\r
-                Sec-Fetch-Dest: document\r
                 Accept-Encoding: gzip, deflate, br, zstd\r
                 Accept-Language: en-NG,en-GB;q=0.9,en-US;q=0.8,en;q=0.7\r
-                Cookie: Idea-d8159949=8efafafd-3594-4244-8cf7-4ca9a28c164c; Idea-d815994a=99e59e3d-3b20-4c6f-80e6-f7c5ccd8b2a3\
                 \r
                 """;
-        */
+                */
 
         InputStream inputStream = new ByteArrayInputStream(
                 rawData.getBytes(
@@ -99,6 +107,30 @@ public class HTTPHeaderParserTest {
                 Accept-Encoding: gzip, deflate, br, zstd\r
                 Accept-Language: en-NG,en-GB;q=0.9,en-US;q=0.8,en;q=0.7\r
                 """;
+
+        InputStream inputStream = new ByteArrayInputStream(
+                rawData.getBytes(
+                        StandardCharsets.US_ASCII
+                )
+        );
+
+        return new InputStreamReader(inputStream, StandardCharsets.US_ASCII);
+    }
+
+    private InputStreamReader generateSpaceBeforeColonErrorHeaderMessage(){
+        String rawData = "Host : localhost:8080\r\n\r\n";
+                /*Connection: keep-alive\r
+                Upgrade-Insecure-Requests: 1\r
+                User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36\r
+                Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,(*)/*;q=0.8,application/signed-exchange;v=b3;q=0.7\r
+                Sec-Fetch-Site: none\r
+                Sec-Fetch-Mode: navigate\r
+                Sec-Fetch-User: ?1\r
+                Accept-Encoding: gzip, deflate, br, zstd\r
+                Accept-Language: en-NG,en-GB;q=0.9,en-US;q=0.8,en;q=0.7\r
+                \r
+                """;
+                */
 
         InputStream inputStream = new ByteArrayInputStream(
                 rawData.getBytes(

@@ -1,4 +1,4 @@
-package com.cit306.EventSite.httpserver.Call;
+package com.cit306.EventSite.httpserver.core;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
