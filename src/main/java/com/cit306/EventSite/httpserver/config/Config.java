@@ -3,7 +3,7 @@ package com.cit306.EventSite.httpserver.config;
 public class Config {
 
     private int port;
-    private String webroot;
+    private String webRoot;
 
     public int getPort() {
         return port;
@@ -13,11 +13,11 @@ public class Config {
         this.port = port;
     }
 
-    public String getWebroot() {
-        return webroot;
+    public String getWebRoot() {
+        return webRoot;
     }
 
-    public void setWebroot(String webroot) {
-        this.webroot = webroot;
+    public void setWebRoot(String webRoot) {
+        this.webRoot = webRoot;
     }
 }

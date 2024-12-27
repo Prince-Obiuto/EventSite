@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
+import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -20,7 +21,7 @@ public class WebRootHandlerTest {
     public void beforeClass() throws WebRootNotFoundException, NoSuchMethodException {
         webRootHandler = new WebRootHandler("WebRoot");
         Class<WebRootHandler> cls = WebRootHandler.class;
-        CheckIfEndsWithSlashMethod = cls.getDeclaredMethod("CheckIfEndsWithSlash", String.class);
+        CheckIfEndsWithSlashMethod = cls.getDeclaredMethod("checkIfEndsWithSlash", String.class);
         CheckIfEndsWithSlashMethod.setAccessible(true);
 
         checkIfProvidedRelativePathExistsMethod = cls.getDeclaredMethod("checkIfProvidedRelativePathExists", String.class);
@@ -165,6 +166,59 @@ public class WebRootHandlerTest {
         } catch (IllegalAccessException e) {
             fail(e);
         } catch (InvocationTargetException e) {
+            fail(e);
+        }
+    }
+
+    @Test
+    void testGetFileMimeTypeText() {
+        try {
+            String mimeType = webRootHandler.getFileMimeType("/");
+            assertEquals("text/html", mimeType);
+        } catch (FileNotFoundException e) {
+            fail(e);
+        }
+    }
+
+    @Test
+    void testGetFileMimeTypePng() {
+        try {
+            String mimeType = webRootHandler.getFileMimeType("/logo.png");
+            assertEquals("image/png", mimeType);
+        } catch (FileNotFoundException e) {
+            fail(e);
+        }
+    }
+
+    @Test
+    void testGetFileMimeTypeDefault() {
+        try {
+            String mimeType = webRootHandler.getFileMimeType("/favicon.ico");
+            assertEquals("application/octet-stream", mimeType);
+        } catch (FileNotFoundException e) {
+            fail(e);
+        }
+    }
+
+    @Test
+    void testGetFileByteArrayData() {
+        try {
+            assertTrue(webRootHandler.getFileByteArrayData("/").length > 0);
+        } catch (FileNotFoundException e) {
+            fail(e);
+        } catch (ReadFileException e) {
+            fail(e);
+        }
+    }
+
+    @Test
+    void testGetFileByteArrayDataFileNotThere() {
+        try {
+            webRootHandler.getFileByteArrayData("/test.html");
+            fail();
+        } catch (FileNotFoundException e) {
+            //pass
+        } catch (ReadFileException e) {
             fail(e);
         }
     }

@@ -14,16 +14,16 @@ public class HttpServer {
 
     public static void main(String[] args) throws IOException {
 
-        System.out.println("Starting server...");
+        LOGGER.info("Starting server...");
 
         ConfigManager.getInstance().loadConfigFile("src/main/resources/http.json");
         Config config = ConfigManager.getInstance().getCurrentConfig();
 
-        System.out.println("Using port " + config.getPort());
-        System.out.println("Using webroot " + config.getWebroot());
+        LOGGER.info("Using port " + config.getPort());
+        LOGGER.info("Using webroot " + config.getWebRoot());
 
         try {
-            ServerListenerThread serverListenerThread = new ServerListenerThread(config.getPort(), config.getWebroot());
+            ServerListenerThread serverListenerThread = new ServerListenerThread(config.getPort(), config.getWebRoot());
             serverListenerThread.start();
         } catch (IOException e) {
             throw new RuntimeException(e);

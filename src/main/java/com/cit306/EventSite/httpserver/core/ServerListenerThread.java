@@ -12,24 +12,23 @@ public class ServerListenerThread extends Thread {
     private final static Logger LOGGER = LoggerFactory.getLogger(ServerListenerThread.class);
 
     private final int port;
-    private final String webroot;
+    private final String webRoot;
     private final ServerSocket serverSocket;
 
-    public ServerListenerThread(int port, String webroot) throws IOException {
+    public ServerListenerThread(int port, String webRoot) throws IOException {
         this.port = port;
-        this.webroot = webroot;
+        this.webRoot = webRoot;
         this.serverSocket = new ServerSocket(this.port);
     }
     @Override
     public void run() {
         try {
-
             while (serverSocket.isBound() && !serverSocket.isClosed()) {
                 Socket socket = serverSocket.accept();
 
                 LOGGER.info("Connection accepted: {}", socket.getInetAddress());
 
-                HTTPConnectionWorkerThread workerThread = new HTTPConnectionWorkerThread(socket);
+                HTTPConnectionWorkerThread workerThread = new HTTPConnectionWorkerThread(socket, webRoot);
                 workerThread.start();
             }
 
