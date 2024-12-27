@@ -113,7 +113,6 @@ public class HttpParser {
                 }
             } else {
                 crlfFound = false;
-                //TODO Append to buffer
                 processingDataBuffer.append((char)_byte);
             }
         }
