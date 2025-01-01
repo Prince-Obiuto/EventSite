@@ -95,7 +95,7 @@ Contributions are welcome! If you'd like to improve the server or add new featur
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+This project is not licensed for now. Will later add the `LICENSE` file for the License details.
 
 ## Acknowledgments
 
